@@ -27,7 +27,6 @@ public class PacienteService implements IPacienteService{
     public PacienteService(PacienteRepository pacienteRepository, ModelMapper modelMapper, IDomicilioService domicilioService) {
         this.pacienteRepository = pacienteRepository;
         this.modelMapper = modelMapper;
-        //configureModelMapper();
         this.domicilioService = domicilioService;
     }
 
