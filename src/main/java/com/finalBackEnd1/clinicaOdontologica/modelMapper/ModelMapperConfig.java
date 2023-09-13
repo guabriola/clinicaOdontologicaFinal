@@ -31,7 +31,6 @@ public class ModelMapperConfig {
         modelMapper.createTypeMap(TurnoDTO.class, Turno.class)
                 .addMapping(TurnoDTO::getOdontologoId, (dest, value) -> dest.getOdontologo().setId((Long) value))
                 .addMapping(TurnoDTO::getPacienteId, (dest, value) -> dest.getPaciente().setId((Long) value));
-
         return modelMapper;
     }
 }

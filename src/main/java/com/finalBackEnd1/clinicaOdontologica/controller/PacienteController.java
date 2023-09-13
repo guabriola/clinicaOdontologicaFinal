@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Set;
+
 
 @RestController
 @RequestMapping("/pacientes")
@@ -33,6 +35,11 @@ public class PacienteController {
     public ResponseEntity<String> borrarPacientePorId(@PathVariable Long id){
         pacienteService.borrarPaciente(id);
         return ResponseEntity.ok("Se borró correctamente el usuario con id número " + id + ".");
+    }
+
+    @GetMapping
+    public ResponseEntity<Set<PacienteDTO>> listarPacientes(){
+        return ResponseEntity.ok(pacienteService.listarPacientes());
     }
 
 }
