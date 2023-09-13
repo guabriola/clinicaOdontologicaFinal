@@ -1,12 +1,16 @@
 package com.finalBackEnd1.clinicaOdontologica.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.finalBackEnd1.clinicaOdontologica.dto.OdontologoDTO;
 import com.finalBackEnd1.clinicaOdontologica.entity.Odontologo;
 import com.finalBackEnd1.clinicaOdontologica.repository.OdontologoRepository;
-import org.modelmapper.ModelMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -14,36 +18,49 @@ public class OdontologoService implements IOdontologoService{
 
     @Autowired
     OdontologoRepository odontologoRepository;
-    private final ModelMapper modelMapper;
 
     @Autowired
-    public OdontologoService(OdontologoRepository odontologoRepository, ModelMapper modelMapper) {
+    ObjectMapper mapper;
+
+    @Autowired
+    public OdontologoService(OdontologoRepository odontologoRepository) {
         this.odontologoRepository = odontologoRepository;
-        this.modelMapper = modelMapper;
     }
 
     @Override
     public OdontologoDTO crearOdontologo(Odontologo odontologo) {
-        return null;
+        return mapper.convertValue(odontologoRepository.save(odontologo), OdontologoDTO.class);
     }
 
     @Override
     public OdontologoDTO actualizarOdontologo(Odontologo odontologo) {
-        return null;
+        return mapper.convertValue(odontologoRepository.save(odontologo), OdontologoDTO.class);
+    }
+
+
+
+    @Override
+    public OdontologoDTO buscarOdontologoPorId(Long id) {
+        Optional<Odontologo> odontologoBuscado = odontologoRepository.findById(id);
+        OdontologoDTO odontologoDTOEncontrado = null;
+        if(odontologoBuscado.isPresent()){
+            odontologoDTOEncontrado = mapper.convertValue(odontologoBuscado, OdontologoDTO.class);
+        }
+        return odontologoDTOEncontrado;
     }
 
     @Override
     public void borrarOdontologo(Long id) {
-
-    }
-
-    @Override
-    public OdontologoDTO buscarOdontologoPorId(Long id) {
-        return null;
+        odontologoRepository.deleteById(id);
     }
 
     @Override
     public Set<OdontologoDTO> listarOdontologos() {
-        return null;
+        List<Odontologo> listaOdontologos = odontologoRepository.findAll();
+        Set<OdontologoDTO> listaEncontradosDTO = new HashSet<>();
+        for (Odontologo odontologo:listaOdontologos) {
+            listaEncontradosDTO.add(mapper.convertValue(odontologo, OdontologoDTO.class));
+        }
+        return listaEncontradosDTO;
     }
 }

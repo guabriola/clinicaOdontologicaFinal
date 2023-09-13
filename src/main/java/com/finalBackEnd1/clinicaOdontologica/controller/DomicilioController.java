@@ -20,12 +20,12 @@ public class DomicilioController {
 
     @PostMapping
     public void crearDomicilio(@RequestBody Domicilio domicilio){
-        domicilioService.crearActualizarDomicilio(domicilio);
+        domicilioService.crearDomicilio(domicilio);
     }
 
     @PutMapping
     public void actualizarDomicilio(@RequestBody Domicilio domicilio){
-        domicilioService.crearActualizarDomicilio(domicilio);
+        domicilioService.actualizarDomicilio(domicilio);
     }
 
     @DeleteMapping("/{id}")

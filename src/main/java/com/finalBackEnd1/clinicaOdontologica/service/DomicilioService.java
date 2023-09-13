@@ -15,7 +15,12 @@ public class DomicilioService implements IDomicilioService{
 
 
     @Override
-    public void crearActualizarDomicilio(Domicilio domicilio) {
+    public void crearDomicilio(Domicilio domicilio) {
+        domicilioRepository.save(domicilio);
+    }
+
+    @Override
+    public void actualizarDomicilio(Domicilio domicilio) {
         domicilioRepository.save(domicilio);
     }
 
