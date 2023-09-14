@@ -1,8 +1,7 @@
 package com.finalBackEnd1.clinicaOdontologica.controller;
 
-import com.finalBackEnd1.clinicaOdontologica.dto.OdontologoDTO;
 import com.finalBackEnd1.clinicaOdontologica.entity.Odontologo;
-import com.finalBackEnd1.clinicaOdontologica.service.OdontologoService;
+import com.finalBackEnd1.clinicaOdontologica.service.IOdontologoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +14,7 @@ import java.util.Optional;
 public class OdontologoController {
 
     @Autowired
-    private OdontologoService odontologoService;
+    private IOdontologoService odontologoService;
 
     @PostMapping
     public ResponseEntity<?> crearOdontologo (@RequestBody Odontologo odontologo){
