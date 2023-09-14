@@ -31,7 +31,7 @@ public class TurnoController {
         return ResponseEntity.ok(turnoService.buscarTurnoPorId(id));
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> borrarTurnoPorId(@PathVariable Long id){
         turnoService.borrarTurno(id);
         return ResponseEntity.ok("Se borró correctamente el usuario con id número " + id + ".");

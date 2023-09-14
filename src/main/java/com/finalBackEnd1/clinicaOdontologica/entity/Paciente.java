@@ -28,7 +28,7 @@ public class Paciente {
     private String apellido;
     @Column(nullable = false)
     private String dni;
-    @Column(name = "fecha_alta")
+    @Column(nullable = false)
     private LocalDate fechaAlta;
 
     @OneToOne(cascade = CascadeType.ALL)

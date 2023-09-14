@@ -31,6 +31,11 @@ public class PacienteController {
         return ResponseEntity.ok(pacienteService.buscarPacientePorId(id));
     }
 
+    @GetMapping("completo/{id}")
+    public ResponseEntity<Paciente> buscarPacienteCompleto(@PathVariable Long id){
+        return ResponseEntity.ok(pacienteService.devovlerPacienteCompleto(id));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> borrarPacientePorId(@PathVariable Long id){
         pacienteService.borrarPaciente(id);
@@ -38,7 +43,12 @@ public class PacienteController {
     }
 
     @GetMapping
-    public ResponseEntity<Set<PacienteDTO>> listarPacientes(){
+    public ResponseEntity<Set<PacienteDTO>> listarPacientesDTO(){
+        return ResponseEntity.ok(pacienteService.listarPacientesDTO());
+    }
+
+    @GetMapping("/completo")
+    public ResponseEntity<Set<Paciente>> listarPacientes(){
         return ResponseEntity.ok(pacienteService.listarPacientes());
     }
 

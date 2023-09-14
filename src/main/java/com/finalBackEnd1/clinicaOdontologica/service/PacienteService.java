@@ -58,7 +58,17 @@ public class PacienteService implements IPacienteService{
     }
 
     @Override
-    public Set<PacienteDTO> listarPacientes() {
+    public Paciente devovlerPacienteCompleto(Long id){
+        Optional<Paciente> pacienteBuscado = pacienteRepository.findById(id);
+        Paciente pacienteEncontrado = null;
+        if(pacienteBuscado.isPresent()){
+            pacienteEncontrado = pacienteBuscado.get();
+        }
+        return pacienteEncontrado;
+    }
+
+    @Override
+    public Set<PacienteDTO> listarPacientesDTO() {
         List<Paciente> listaPacientes = pacienteRepository.findAll();
         Set <PacienteDTO> setPacientesDTO = new HashSet<>();
         for (Paciente paciente:
@@ -68,12 +78,20 @@ public class PacienteService implements IPacienteService{
         return setPacientesDTO;
     }
 
+    @Override
+    public Set<Paciente> listarPacientes() {
+        List<Paciente> listaDePacientes = pacienteRepository.findAll();
+        return new HashSet<>(listaDePacientes);
+    }
+
 
     //NUEVOS MAPPERS
     public PacienteDTO pacienteApacienteDTO(Paciente paciente) {
         // Utiliza DomicilioService para obtener el domicilio
         PacienteDTO pacienteDTO = modelMapper.map(paciente, PacienteDTO.class);
+        pacienteDTO.setFechaAlta(paciente.getFechaAlta());
         pacienteDTO.setDomicilioId(paciente.getDomicilio().getId());
+
         return pacienteDTO;
     }
 
@@ -86,19 +104,6 @@ public class PacienteService implements IPacienteService{
 
         return paciente;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

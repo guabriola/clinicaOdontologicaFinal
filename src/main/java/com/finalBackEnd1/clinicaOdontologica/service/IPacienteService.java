@@ -11,5 +11,7 @@ public interface IPacienteService {
     PacienteDTO actualizarPaciente(Paciente paciente);
     void borrarPaciente (Long id);
     PacienteDTO buscarPacientePorId(Long id);
-    Set<PacienteDTO> listarPacientes();
+    Paciente devovlerPacienteCompleto(Long id);
+    Set<PacienteDTO> listarPacientesDTO();
+    Set<Paciente> listarPacientes();
 }

@@ -17,7 +17,8 @@ public class ModelMapperConfig {
 
         // Mapeo de Paciente a PacienteDTO
         modelMapper.createTypeMap(Paciente.class, PacienteDTO.class)
-                .addMapping(src -> src.getDomicilio().getId(), PacienteDTO::setDomicilioId);
+                .addMapping(src -> src.getDomicilio().getId(), PacienteDTO::setDomicilioId)
+                .addMapping(Paciente::getFechaAlta, PacienteDTO::setFechaAlta);
 
         // Mapeo de PacienteDTO a Paciente
         modelMapper.createTypeMap(PacienteDTO.class, Paciente.class)

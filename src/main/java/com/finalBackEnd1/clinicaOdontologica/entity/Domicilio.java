@@ -19,9 +19,7 @@ public class Domicilio {
     private Long id;
     @Column(nullable = false)
     private String calle;
-
-    private String esquina;
-    @Column
+    @Column(nullable = false)
     private String numero;
     @Column(nullable = false)
     private String provincia;

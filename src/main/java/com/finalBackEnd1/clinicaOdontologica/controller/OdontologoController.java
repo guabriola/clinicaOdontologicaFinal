@@ -1,13 +1,13 @@
 package com.finalBackEnd1.clinicaOdontologica.controller;
 
+import com.finalBackEnd1.clinicaOdontologica.dto.OdontologoDTO;
 import com.finalBackEnd1.clinicaOdontologica.entity.Odontologo;
 import com.finalBackEnd1.clinicaOdontologica.service.IOdontologoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
-import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/odontologos")
@@ -22,7 +22,7 @@ public class OdontologoController {
     }
 
     @PutMapping
-    public ResponseEntity<?> actualizarOdontologo (@RequestBody Odontologo odontologo){
+    public ResponseEntity<OdontologoDTO> actualizarOdontologo (@RequestBody Odontologo odontologo){
         return ResponseEntity.ok(odontologoService.crearOdontologo(odontologo));
     }
 
@@ -35,6 +35,10 @@ public class OdontologoController {
     public ResponseEntity<?> borrarOdontologoPorID (@PathVariable Long id){
         odontologoService.borrarOdontologo(id);
         return  ResponseEntity.ok("Se borró correctamente el servicio con id " + id);
+    }
 
+    @GetMapping
+    public ResponseEntity<Set<OdontologoDTO>> listarPacientes(){
+        return ResponseEntity.ok(odontologoService.listarOdontologos());
     }
 }
