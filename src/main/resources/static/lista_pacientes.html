@@ -39,8 +39,8 @@
                         Gestion Turnos
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="./post_turnos.html">Alta</a></li>
-                        <li><a class="dropdown-item" href="./get_all_turnos.html">Listar</a></li>
+                        <li><a class="dropdown-item" href="./post_turno.html">Alta</a></li>
+                        <li><a class="dropdown-item" href="./lista_turnos.html">Listar</a></li>
 
                     </ul>
                 </li>
@@ -49,10 +49,10 @@
         </div>
     </div>
 </nav>
-<div id="div_pacientes_table ">
+<div class="container mt-5" id="div_pacientes_table ">
     <h1>Paciente</h1>
     <div class="row col-md-6 table-responsive">
-        <table id="tabla-pacientes" class="table table-striped">
+        <table id="tabla-pacientes" class="table table-striped text-center">
             <thead>
             <tr>
                 <th>Id</th>
@@ -71,13 +71,12 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-6" style="display: none;
-											background-color:#e6fffa; padding:10px; border-radius:3px"
-         id="div_odontologos_updating">
-        <form id="update_odontologos_form">
+    <div class="col-sm-6" style="display: none; background-color:#e6fffa; padding:10px; border-radius:3px"
+            id="div_actualizar_paciente">
+            <form id="update_paciente_form">
             <div class="form-group">
                 <label >Id:</label>
-                <input type="text" class="form-control" id="odontologo_id" readonly>
+                <input type="text" class="form-control" id="paciente_id" readonly>
             </div>
             <div class="form-group">
                 <label >Nombre:</label>
@@ -88,10 +87,33 @@
                 <input type="text" class="form-control" placeholder="apellido" id="apellido">
             </div>
             <div class="form-group">
-                <label >Matricula:</label>
-                <input type="text" class="form-control" placeholder="matricula" id="matricula">
+                <label for="dni">DNI:</label>
+                <input type="text" class="form-control" placeholder="dni" id="dni">
             </div>
-
+            <div class="form-group">
+                <label for="fecha-alta">Fecha de Ingreso:</label>
+                <input type="text" class="form-control" placeholder="fecha-alta" id="fecha-alta">
+            </div>
+            <div class="form-group " style="display: none">
+                <label for="id-direccion">IdDirección:</label>
+                <input type="text" class="form-control" placeholder="id-direccion" id="id-direccion">
+            </div>
+            <div class="form-group">
+                <label for="calle">Calle:</label>
+                <input type="text" class="form-control" placeholder="calle" id="calle">
+            </div>
+            <div class="form-group">
+                <label for="numero">Numero:</label>
+                <input type="text" class="form-control" placeholder="numero" id="numero">
+            </div>
+            <div class="form-group">
+                <label for="provincia">Provincia:</label>
+                <input type="text" class="form-control" placeholder="provincia" id="provincia">
+            </div>
+            <div class="form-group">
+                <label for="ciudad">Ciudad:</label>
+                <input type="text" class="form-control" placeholder="ciudad" id="ciudad">
+            </div>
 
             <button type="submit" class="btn btn-primary">Modificar</button>
         </form>

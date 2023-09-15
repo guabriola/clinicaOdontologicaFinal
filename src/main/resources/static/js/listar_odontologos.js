@@ -1,6 +1,6 @@
 // Función para eliminar un odontólogo por ID
 function deleteBy(id) {
-    const url = '/odontologos/' + id; // Reemplaza con la URL correcta para eliminar un odontólogo
+    const url = '/odontologos/' + id;
     const settings = {
         method: 'DELETE'
     };
@@ -8,13 +8,13 @@ function deleteBy(id) {
     fetch(url, settings)
         .then(response => {
             if (response.ok) {
-                // Eliminación exitosa, eliminar la fila de la tabla
+
                 const row = document.getElementById('tr_' + id);
                 if (row) {
                     row.remove();
                 }
             } else {
-                // Manejar errores de eliminación aquí
+               // TODO Acá tengo que manejar los Errores
             }
         })
         .catch(error => {
@@ -22,13 +22,13 @@ function deleteBy(id) {
         });
 }
 
-// Función para mostrar los detalles del odontólogo en el formulario de actualización
+// Función que muestra los campos del odontologo en el formulario de actualización
 function findBy(id) {
-    const url = '/odontologos/' + id; // Reemplaza con la URL correcta para obtener detalles del odontólogo
+    const url = '/odontologos/' + id;
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            // Rellenar el formulario de actualización con los detalles del odontólogo
+            // Relleno formulario de actualización con los datos del odontólogo
             document.getElementById('odontologo_id').value = data.id;
             document.getElementById('nombre').value = data.nombre;
             document.getElementById('apellido').value = data.apellido;
@@ -45,6 +45,7 @@ function showUpdateForm() {
     updateForm.style.display = 'block';
 }
 
+//Oculto el formulario de actualización
 function hideUpdateForm() {
     const updateForm = document.getElementById('div_odontologos_updating');
     updateForm.style.display = 'none';
@@ -57,7 +58,7 @@ function updateOdontologo() {
     const apellido = document.getElementById('apellido').value;
     const matricula = document.getElementById('matricula').value;
 
-    const url = '/odontologos' // Reemplaza con la URL correcta para actualizar el odontólogo
+    const url = '/odontologos'
     const data = {
         id: id,
         nombre: nombre,
@@ -66,7 +67,7 @@ function updateOdontologo() {
     };
 
     const settings = {
-        method: 'PUT', // Cambia a 'POST' si es necesario
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -76,9 +77,10 @@ function updateOdontologo() {
     fetch(url, settings)
         .then(response => {
             if (response.ok) {
-                // Actualización exitosa, puedes hacer algo aquí si lo deseas
+               // La actualización fué hecha
+               //Todo Ver opciones de mensajes
             } else {
-                // Manejar errores de actualización aquí
+               // TODO trabajar errores de actualización
             }
         })
         .catch(error => {
@@ -131,11 +133,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const updateForm = document.getElementById('update_odontologos_form');
 
     updateForm.addEventListener('submit', function (event) {
-        event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
+        event.preventDefault();
 
         // Llama a la función para actualizar el odontólogo
         updateOdontologo();
-        hideUpdateForm()
+        //Oculta el formulario
+        hideUpdateForm();
+        //Recarga la página
         location.reload();
     });
 
