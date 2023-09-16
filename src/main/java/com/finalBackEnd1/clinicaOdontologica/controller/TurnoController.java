@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @RestController
@@ -29,6 +30,11 @@ public class TurnoController {
     @GetMapping("/{id}")
     public ResponseEntity<TurnoDTO> buscarTurnoPOrID(@PathVariable Long id){
         return ResponseEntity.ok(turnoService.buscarTurnoPorId(id));
+    }
+
+    @GetMapping
+    public Set<TurnoDTO> listarTurnos (){
+        return turnoService.listarTurnos();
     }
 
     @DeleteMapping("/{id}")

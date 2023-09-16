@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Lista de Turnos</title>
+    <title>Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
 </head>
@@ -15,13 +15,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Gestion Pacientes
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="post_paciente.html">Alta</a></li>
+                        <li><a class="dropdown-item" href="lista_pacientes.html">Listar</a></li>
+
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -48,97 +49,24 @@
     </div>
 </nav>
 
+<h1>Lista de Turnos</h1>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Paciente</th>
+        <th>Odontólogo</th>
+        <th>Fecha y Hora</th>
+    </tr>
+    </thead>
+    <tbody id="tablaTurnos">
+    <!-- Acá van los turnos que vamos cargando -->
+    </tbody>
+</table>
 
-<div class="container">
-    <h1>Lista de Turnos</h1>
-    <div class="row">
-        <div class="col-md-4">
-            <select id="odontologoFilter" class="form-select">
-                <option value="">Filtrar por Odontólogo</option>
-                <!-- Aquí puedes cargar dinámicamente la lista de odontólogos desde tu base de datos -->
-                <option value="odontologo1">Odontólogo 1</option>
-                <option value="odontologo2">Odontólogo 2</option>
-                <!-- Agrega más opciones según tus datos -->
-            </select>
-        </div>
-        <div class="col-md-4">
-            <select id="pacienteFilter" class="form-select">
-                <option value="">Filtrar por Paciente</option>
-                <!-- Aquí puedes cargar dinámicamente la lista de pacientes desde tu base de datos -->
-                <option value="paciente1">Paciente 1</option>
-                <option value="paciente2">Paciente 2</option>
-                <!-- Agrega más opciones según tus datos -->
-            </select>
-        </div>
-    </div>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Odontólogo</th>
-            <th>Paciente</th>
-            <th>Fecha y Hora</th>
-        </tr>
-        </thead>
-        <tbody id="turnosTableBody">
-        <!-- Aquí se cargarán los turnos de manera dinámica utilizando JavaScript -->
-        </tbody>
-    </table>
-</div>
-<script>
-    // Datos de ejemplo para los turnos (puedes reemplazarlos con datos de tu base)
-    const turnos = [
-        { odontologo: 'Odontólogo 1', paciente: 'Paciente 1', fechaHora: '2023-09-15 10:00 AM' },
-        { odontologo: 'Odontólogo 2', paciente: 'Paciente 2', fechaHora: '2023-09-15 11:00 AM' },
-        // Agrega más turnos aquí
-    ];
 
-    // Función para cargar los turnos en la tabla
-    function cargarTurnos(turnosData) {
-        const tableBody = document.getElementById('turnosTableBody');
-        tableBody.innerHTML = '';
-
-        for (const turno of turnosData) {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${turno.odontologo}</td>
-                <td>${turno.paciente}</td>
-                <td>${turno.fechaHora}</td>
-            `;
-            tableBody.appendChild(row);
-        }
-    }
-
-    // Evento de cambio en los filtros
-    function filtrarTurnos() {
-        const odontologoSeleccionado = document.getElementById('odontologoFilter').value;
-        const pacienteSeleccionado = document.getElementById('pacienteFilter').value;
-
-        // Filtra los turnos según los valores seleccionados
-        const turnosFiltrados = turnos.filter(turno => {
-            if (odontologoSeleccionado && pacienteSeleccionado) {
-                return turno.odontologo === odontologoSeleccionado && turno.paciente === pacienteSeleccionado;
-            } else if (odontologoSeleccionado) {
-                return turno.odontologo === odontologoSeleccionado;
-            } else if (pacienteSeleccionado) {
-                return turno.paciente === pacienteSeleccionado;
-            } else {
-                return true; // Mostrar todos los turnos si no se selecciona ningún filtro
-            }
-        });
-
-        // Actualiza la tabla con los turnos filtrados
-        cargarTurnos(turnosFiltrados);
-    }
-
-    // Eventos de cambio en los filtros
-    document.getElementById('odontologoFilter').addEventListener('change', filtrarTurnos);
-    document.getElementById('pacienteFilter').addEventListener('change', filtrarTurnos);
-
-    // Cargar todos los turnos al cargar la página
-    cargarTurnos(turnos);
-</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-<script type="text/javascript" src="js/listar_pacientes.js"></script>
+<script type="text/javascript" src="js/listar_turnos.js"></script>
 </body>
 </html>

@@ -6,7 +6,10 @@ import com.finalBackEnd1.clinicaOdontologica.repository.TurnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class TurnoService implements ITurnoService{
@@ -39,6 +42,17 @@ public class TurnoService implements ITurnoService{
             turnoDTOEncontrado = turnoATurnoDTO(turnoBuscado.get());
         }
         return turnoDTOEncontrado;
+    }
+
+    @Override
+    public Set<TurnoDTO> listarTurnos() {
+        List<Turno> listaTurnos = turnoRepository.findAll();
+        Set<TurnoDTO> setTurnosDTO = new HashSet<>();
+        for (Turno turno:
+             listaTurnos) {
+            setTurnosDTO.add(turnoATurnoDTO(turno));
+        }
+        return setTurnosDTO;
     }
 
     private TurnoDTO turnoATurnoDTO(Turno turno){

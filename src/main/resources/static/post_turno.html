@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Crear Turno</title>
+    <title>Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -19,7 +20,9 @@
                         Gestion Pacientes
                     </a>
                     <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="post_paciente.html">Alta</a></li>
                         <li><a class="dropdown-item" href="lista_pacientes.html">Listar</a></li>
+
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -47,43 +50,23 @@
 </nav>
 
 
-<div class="container mt-5">
-    <h1>Crear Nuevo Turno</h1>
+<h1>Cargar Turno</h1>
+<form id="turnoForm">
+    <label for="pacienteSelect">Selecciona un Paciente:</label>
+    <select id="pacienteSelect" name="pacienteId"></select><br><br>
 
-    <!-- Formulario para crear un nuevo turno -->
-    <form>
-        <div class="mb-3">
-            <label for="odontologoSelect" class="form-label">Odontólogo:</label>
-            <select class="form-select" id="odontologoSelect">
-                <!-- Opciones para seleccionar un odontólogo (puedes llenarlas dinámicamente con JavaScript) -->
-                <option value="1">Odontólogo 1</option>
-                <option value="2">Odontólogo 2</option>
-                <!-- Agrega más opciones aquí -->
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="pacienteSelect" class="form-label">Paciente:</label>
-            <select class="form-select" id="pacienteSelect">
-                <!-- Opciones para seleccionar un paciente (puedes llenarlas dinámicamente con JavaScript) -->
-                <option value="1">Paciente 1</option>
-                <option value="2">Paciente 2</option>
-                <!-- Agrega más opciones aquí -->
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="fecha" class="form-label">Fecha:</label>
-            <input type="date" class="form-control" id="fecha">
-        </div>
-        <div class="mb-3">
-            <label for="hora" class="form-label">Hora:</label>
-            <input type="time" class="form-control" id="hora">
-        </div>
-        <button type="submit" class="btn btn-primary">Crear Turno</button>
-    </form>
-</div>
+    <label for="odontologoSelect">Selecciona un Odontólogo:</label>
+    <select id="odontologoSelect" name="odontologoId"></select><br><br>
+
+    <label for="fechaYHora">Fecha y Hora:</label>
+    <input type="datetime-local" id="fechaYHora" name="fechaYHora" required><br><br>
+
+    <input type="submit" value="Guardar Turno">
+</form>
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-<script src="js/post_paciente.js"></script>
+<script type="text/javascript" src="js/post_turno.js"></script>
 </body>
 </html>
