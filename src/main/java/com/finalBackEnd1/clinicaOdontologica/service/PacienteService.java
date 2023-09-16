@@ -3,6 +3,7 @@ package com.finalBackEnd1.clinicaOdontologica.service;
 import com.finalBackEnd1.clinicaOdontologica.dto.PacienteDTO;
 import com.finalBackEnd1.clinicaOdontologica.entity.Domicilio;
 import com.finalBackEnd1.clinicaOdontologica.entity.Paciente;
+import com.finalBackEnd1.clinicaOdontologica.exceptions.ResourceNotFoundException;
 import com.finalBackEnd1.clinicaOdontologica.repository.PacienteRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,17 +34,21 @@ public class PacienteService implements IPacienteService{
     //Metodos manuales
 
     @Override
-    public PacienteDTO crearPaciente(Paciente paciente){
-         return pacienteApacienteDTO(pacienteRepository.save(paciente));
-    }
-
-    @Override
-    public PacienteDTO actualizarPaciente(Paciente paciente){
+    public PacienteDTO crearPaciente(Paciente paciente) throws Exception{
         return pacienteApacienteDTO(pacienteRepository.save(paciente));
     }
 
     @Override
-    public void borrarPaciente (Long id){
+    public PacienteDTO actualizarPaciente(Paciente paciente) throws ResourceNotFoundException{
+        if(buscarPacientePorId(paciente.getId()) == null)
+            throw new ResourceNotFoundException("El paciente de Id: " + paciente.getId() + " no existe en la base de datos.");
+        return pacienteApacienteDTO(pacienteRepository.save(paciente));
+    }
+
+    @Override
+    public void borrarPaciente (Long id) throws ResourceNotFoundException {
+        if(buscarPacientePorId(id) == null)
+            throw new ResourceNotFoundException("El paciente de Id: " + id + " no existe en la base de datos.");
         pacienteRepository.deleteById(id);
     }
 

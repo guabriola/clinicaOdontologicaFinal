@@ -2,6 +2,7 @@ package com.finalBackEnd1.clinicaOdontologica.controller;
 
 import com.finalBackEnd1.clinicaOdontologica.dto.TurnoDTO;
 import com.finalBackEnd1.clinicaOdontologica.entity.Turno;
+import com.finalBackEnd1.clinicaOdontologica.exceptions.ResourceNotFoundException;
 import com.finalBackEnd1.clinicaOdontologica.service.ITurnoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,29 +19,29 @@ public class TurnoController {
     ITurnoService turnoService;
 
     @PostMapping
-    public ResponseEntity<TurnoDTO> crearTurno(@RequestBody Turno turno){
+    public ResponseEntity<TurnoDTO> crearTurno(@RequestBody Turno turno) throws Exception{
         return ResponseEntity.ok(turnoService.crearTurno(turno));
     }
 
     @PutMapping
-    public ResponseEntity<TurnoDTO> actualizarTurno(@RequestBody Turno turno) {
-        return ResponseEntity.ok(turnoService.crearTurno(turno));
+    public ResponseEntity<TurnoDTO> actualizarTurno(@RequestBody Turno turno) throws ResourceNotFoundException {
+        return ResponseEntity.ok(turnoService.actualizarTurno(turno));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TurnoDTO> buscarTurnoPOrID(@PathVariable Long id){
+    public ResponseEntity<TurnoDTO> buscarTurnoPOrID(@PathVariable Long id) throws Exception{
         return ResponseEntity.ok(turnoService.buscarTurnoPorId(id));
     }
 
     @GetMapping
-    public Set<TurnoDTO> listarTurnos (){
+    public Set<TurnoDTO> listarTurnos () throws Exception {
         return turnoService.listarTurnos();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> borrarTurnoPorId(@PathVariable Long id){
+    public ResponseEntity<String> borrarTurnoPorId(@PathVariable Long id) throws ResourceNotFoundException{
         turnoService.borrarTurno(id);
-        return ResponseEntity.ok("Se borró correctamente el usuario con id número " + id + ".");
+        return ResponseEntity.ok("Se borró correctamente el turno con id número " + id + ".");
     }
 
 }

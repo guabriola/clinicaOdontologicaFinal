@@ -1,6 +1,7 @@
 package com.finalBackEnd1.clinicaOdontologica.controller;
 
 import com.finalBackEnd1.clinicaOdontologica.entity.Domicilio;
+import com.finalBackEnd1.clinicaOdontologica.exceptions.ResourceNotFoundException;
 import com.finalBackEnd1.clinicaOdontologica.repository.DomicilioRepository;
 import com.finalBackEnd1.clinicaOdontologica.service.IDomicilioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +20,17 @@ public class DomicilioController {
     IDomicilioService domicilioService;
 
     @PostMapping
-    public void crearDomicilio(@RequestBody Domicilio domicilio){
+    public void crearDomicilio(@RequestBody Domicilio domicilio) throws Exception{
         domicilioService.crearDomicilio(domicilio);
     }
 
     @PutMapping
-    public void actualizarDomicilio(@RequestBody Domicilio domicilio){
+    public void actualizarDomicilio(@RequestBody Domicilio domicilio) throws ResourceNotFoundException {
         domicilioService.actualizarDomicilio(domicilio);
     }
 
     @DeleteMapping("/{id}")
-    public void borrarDomicilio(@PathVariable Long id){
+    public void borrarDomicilio(@PathVariable Long id) throws ResourceNotFoundException{
         domicilioService.borrarDomicilio(id);
     }
 

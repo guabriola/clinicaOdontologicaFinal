@@ -1,6 +1,7 @@
 package com.finalBackEnd1.clinicaOdontologica.service;
 
 import com.finalBackEnd1.clinicaOdontologica.entity.Domicilio;
+import com.finalBackEnd1.clinicaOdontologica.exceptions.ResourceNotFoundException;
 import com.finalBackEnd1.clinicaOdontologica.repository.DomicilioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,17 +16,21 @@ public class DomicilioService implements IDomicilioService{
 
 
     @Override
-    public void crearDomicilio(Domicilio domicilio) {
+    public void crearDomicilio(Domicilio domicilio) throws Exception {
         domicilioRepository.save(domicilio);
     }
 
     @Override
-    public void actualizarDomicilio(Domicilio domicilio) {
+    public void actualizarDomicilio(Domicilio domicilio) throws ResourceNotFoundException {
+        if(buscarDomicilioPorId(domicilio.getId()) == null)
+            throw new ResourceNotFoundException("El domicilio de Id: " + domicilio.getId() + " no existe en la base de datos.");
         domicilioRepository.save(domicilio);
     }
 
     @Override
-    public void borrarDomicilio(Long id) {
+    public void borrarDomicilio(Long id) throws ResourceNotFoundException {
+        if(buscarDomicilioPorId(id) == null)
+            throw new ResourceNotFoundException("El domicilio de Id: " + id + " no existe en la base de datos.");
         domicilioRepository.deleteById(id);
     }
 

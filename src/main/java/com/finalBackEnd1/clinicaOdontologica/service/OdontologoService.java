@@ -3,6 +3,7 @@ package com.finalBackEnd1.clinicaOdontologica.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.finalBackEnd1.clinicaOdontologica.dto.OdontologoDTO;
 import com.finalBackEnd1.clinicaOdontologica.entity.Odontologo;
+import com.finalBackEnd1.clinicaOdontologica.exceptions.ResourceNotFoundException;
 import com.finalBackEnd1.clinicaOdontologica.repository.OdontologoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +29,14 @@ public class OdontologoService implements IOdontologoService{
     }
 
     @Override
-    public OdontologoDTO crearOdontologo(Odontologo odontologo) {
+    public OdontologoDTO crearOdontologo(Odontologo odontologo) throws Exception{
         return mapper.convertValue(odontologoRepository.save(odontologo), OdontologoDTO.class);
     }
 
     @Override
-    public OdontologoDTO actualizarOdontologo(Odontologo odontologo) {
+    public OdontologoDTO actualizarOdontologo(Odontologo odontologo) throws ResourceNotFoundException {
+        if(buscarOdontologoPorId(odontologo.getId()) == null)
+            throw new ResourceNotFoundException("El odontologo de Id: " + odontologo.getId() + " no existe en la base de datos.");
         return mapper.convertValue(odontologoRepository.save(odontologo), OdontologoDTO.class);
     }
 
@@ -50,7 +53,9 @@ public class OdontologoService implements IOdontologoService{
     }
 
     @Override
-    public void borrarOdontologo(Long id) {
+    public void borrarOdontologo(Long id) throws ResourceNotFoundException{
+        if(buscarOdontologoPorId(id) == null)
+            throw new ResourceNotFoundException("El odontologo de Id: " + id + " no existe en la base de datos.");
         odontologoRepository.deleteById(id);
     }
 

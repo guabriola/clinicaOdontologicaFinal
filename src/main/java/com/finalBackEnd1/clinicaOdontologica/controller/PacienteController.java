@@ -2,6 +2,7 @@ package com.finalBackEnd1.clinicaOdontologica.controller;
 
 import com.finalBackEnd1.clinicaOdontologica.dto.PacienteDTO;
 import com.finalBackEnd1.clinicaOdontologica.entity.Paciente;
+import com.finalBackEnd1.clinicaOdontologica.exceptions.ResourceNotFoundException;
 import com.finalBackEnd1.clinicaOdontologica.service.IPacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,12 +18,12 @@ public class PacienteController {
     IPacienteService pacienteService;
 
     @PostMapping
-    public ResponseEntity<PacienteDTO> crearPaciente(@RequestBody Paciente paciente){
+    public ResponseEntity<PacienteDTO> crearPaciente(@RequestBody Paciente paciente) throws Exception {
         return ResponseEntity.ok(pacienteService.crearPaciente(paciente));
     }
 
     @PutMapping
-    public ResponseEntity<PacienteDTO> actualizarPaciente(@RequestBody Paciente paciente){
+    public ResponseEntity<PacienteDTO> actualizarPaciente(@RequestBody Paciente paciente) throws ResourceNotFoundException{
         return ResponseEntity.ok(pacienteService.actualizarPaciente(paciente));
     }
 
@@ -37,7 +38,7 @@ public class PacienteController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> borrarPacientePorId(@PathVariable Long id){
+    public ResponseEntity<String> borrarPacientePorId(@PathVariable Long id) throws ResourceNotFoundException {
         pacienteService.borrarPaciente(id);
         return ResponseEntity.ok("Se borró correctamente el usuario con id número " + id + ".");
     }

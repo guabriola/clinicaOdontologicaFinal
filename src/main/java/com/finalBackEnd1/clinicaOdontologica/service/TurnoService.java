@@ -2,6 +2,7 @@ package com.finalBackEnd1.clinicaOdontologica.service;
 
 import com.finalBackEnd1.clinicaOdontologica.dto.TurnoDTO;
 import com.finalBackEnd1.clinicaOdontologica.entity.Turno;
+import com.finalBackEnd1.clinicaOdontologica.exceptions.ResourceNotFoundException;
 import com.finalBackEnd1.clinicaOdontologica.repository.TurnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,17 +23,23 @@ public class TurnoService implements ITurnoService{
     }
 
     @Override
-    public TurnoDTO crearTurno(Turno turno) {
+    public TurnoDTO crearTurno(Turno turno) throws Exception{
         return turnoATurnoDTO(turnoRepository.save(turno));
     }
 
     @Override
-    public TurnoDTO actualizarTurno(Turno turno) {
+    public TurnoDTO actualizarTurno(Turno turno) throws ResourceNotFoundException {
+        if(buscarTurnoPorId(turno.getId()) == null)
+            throw new ResourceNotFoundException("El turno de Id: " + turno.getId() + " no existe en la base de datos.");
         return turnoATurnoDTO(turnoRepository.save(turno));
     }
 
     @Override
-    public void borrarTurno(Long id) {turnoRepository.deleteById(id); }
+    public void borrarTurno(Long id) throws ResourceNotFoundException {
+        if(buscarTurnoPorId(id) == null)
+            throw new ResourceNotFoundException("El turno de Id: " + id + " no existe en la base de datos.");
+        turnoRepository.deleteById(id);
+    }
 
     @Override
     public TurnoDTO buscarTurnoPorId(Long id) {

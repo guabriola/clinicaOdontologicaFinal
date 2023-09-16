@@ -1,0 +1,12 @@
+[2023-09-16 09:21:43] [ ERROR] [GlobalExceptionHandler:16] Request method 'POST' not supported
+[2023-09-16 09:22:13] [ ERROR] [GlobalExceptionHandler:16] not-null property references a null or transient value : com.finalBackEnd1.clinicaOdontologica.entity.Paciente.apellido; nested exception is org.hibernate.PropertyValueException: not-null property references a null or transient value : com.finalBackEnd1.clinicaOdontologica.entity.Paciente.apellido
+[2023-09-16 11:30:01] [ ERROR] [GlobalExceptionHandler:16] not-null property references a null or transient value : com.finalBackEnd1.clinicaOdontologica.entity.Paciente.fechaAlta; nested exception is org.hibernate.PropertyValueException: not-null property references a null or transient value : com.finalBackEnd1.clinicaOdontologica.entity.Paciente.fechaAlta
+[2023-09-16 11:50:21] [ ERROR] [GlobalExceptionHandler:16] El paciente con id1no existe.
+[2023-09-16 11:51:50] [ ERROR] [GlobalExceptionHandler:16] El paciente de Id: 1 no existe en la base de datos.
+[2023-09-16 11:54:29] [ ERROR] [GlobalExceptionHandler:16] El paciente de Id: 1 no existe en la base de datos.
+[2023-09-16 11:54:36] [ ERROR] [GlobalExceptionHandler:16] El paciente de Id: 1 no existe en la base de datos.
+[2023-09-16 12:51:48] [ ERROR] [GlobalExceptionHandler:16] The given id must not be null!; nested exception is java.lang.IllegalArgumentException: The given id must not be null!
+[2023-09-16 12:54:21] [ ERROR] [GlobalExceptionHandler:16] The given id must not be null!; nested exception is java.lang.IllegalArgumentException: The given id must not be null!
+[2023-09-16 12:56:24] [ ERROR] [GlobalExceptionHandler:16] not-null property references a null or transient value : com.finalBackEnd1.clinicaOdontologica.entity.Paciente.fechaAlta; nested exception is org.hibernate.PropertyValueException: not-null property references a null or transient value : com.finalBackEnd1.clinicaOdontologica.entity.Paciente.fechaAlta
+[2023-09-16 12:59:30] [ ERROR] [GlobalExceptionHandler:16] not-null property references a null or transient value : com.finalBackEnd1.clinicaOdontologica.entity.Paciente.fechaAlta; nested exception is org.hibernate.PropertyValueException: not-null property references a null or transient value : com.finalBackEnd1.clinicaOdontologica.entity.Paciente.fechaAlta
+[2023-09-16 13:22:04] [ ERROR] [GlobalExceptionHandler:16] El odontologo de Id: 1 no existe en la base de datos.
