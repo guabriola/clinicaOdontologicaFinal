@@ -30,6 +30,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/turnos").hasAuthority("USER")
                 .antMatchers("/odontologos/**", "/pacientes/**").hasAuthority("ADMIN")
+                .antMatchers("/**").authenticated()
                 .and().formLogin()
                 .and().logout();
 
