@@ -29,7 +29,7 @@ public class OdontologoService implements IOdontologoService{
     }
 
     @Override
-    public OdontologoDTO crearOdontologo(Odontologo odontologo) throws Exception{
+    public OdontologoDTO crearOdontologo(Odontologo odontologo){
         return mapper.convertValue(odontologoRepository.save(odontologo), OdontologoDTO.class);
     }
 
@@ -68,4 +68,9 @@ public class OdontologoService implements IOdontologoService{
         }
         return listaEncontradosDTO;
     }
+
+    public Odontologo OdontologoDtoAOdontologo(OdontologoDTO odontologoDTO){
+        return mapper.convertValue(odontologoDTO, Odontologo.class);
+    }
+
 }

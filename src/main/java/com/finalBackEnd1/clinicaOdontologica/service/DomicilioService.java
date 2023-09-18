@@ -16,7 +16,7 @@ public class DomicilioService implements IDomicilioService{
 
 
     @Override
-    public void crearDomicilio(Domicilio domicilio) throws Exception {
+    public void crearDomicilio(Domicilio domicilio) {
         domicilioRepository.save(domicilio);
     }
 

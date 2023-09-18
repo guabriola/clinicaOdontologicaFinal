@@ -34,7 +34,7 @@ public class PacienteService implements IPacienteService{
     //Metodos manuales
 
     @Override
-    public PacienteDTO crearPaciente(Paciente paciente) throws Exception{
+    public PacienteDTO crearPaciente(Paciente paciente){
         return pacienteApacienteDTO(pacienteRepository.save(paciente));
     }
 

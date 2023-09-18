@@ -7,7 +7,7 @@ import com.finalBackEnd1.clinicaOdontologica.exceptions.ResourceNotFoundExceptio
 import java.util.Set;
 
 public interface IOdontologoService {
-    OdontologoDTO crearOdontologo(Odontologo odontologo) throws Exception;
+    OdontologoDTO crearOdontologo(Odontologo odontologo);
     OdontologoDTO actualizarOdontologo(Odontologo odontologo) throws ResourceNotFoundException;
     void borrarOdontologo(Long id) throws ResourceNotFoundException;
     OdontologoDTO buscarOdontologoPorId(Long id);

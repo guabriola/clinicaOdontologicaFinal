@@ -25,4 +25,11 @@ public class Domicilio {
     private String provincia;
     @Column(nullable = false)
     private String ciudad;
+
+    public Domicilio(String calle, String numero, String provincia, String ciudad) {
+        this.calle = calle;
+        this.numero = numero;
+        this.provincia = provincia;
+        this.ciudad = ciudad;
+    }
 }

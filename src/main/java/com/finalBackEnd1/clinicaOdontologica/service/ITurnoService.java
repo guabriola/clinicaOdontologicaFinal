@@ -8,7 +8,7 @@ import java.util.Set;
 
 public interface ITurnoService {
 
-    TurnoDTO crearTurno (Turno turno) throws Exception;
+    TurnoDTO crearTurno (Turno turno);
     TurnoDTO actualizarTurno (Turno turno) throws ResourceNotFoundException;
     void borrarTurno (Long id) throws ResourceNotFoundException;
     TurnoDTO buscarTurnoPorId (Long id);

@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Obtener la lista de pacientes y odontólogos y llenar los select
-    fetch('/pacientes')
+    fetch('/turnos/listopacientes')
         .then(response => response.json())
         .then(data => {
             const pacienteSelect = document.getElementById('pacienteSelect');
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
 
-    fetch('/odontologos')
+    fetch('/turnos/listoodontologos')
         .then(response => response.json())
         .then(data => {
             const odontologoSelect = document.getElementById('odontologoSelect');

@@ -30,4 +30,10 @@ public class Turno {
 
     @Column(nullable = false)
     private LocalDate fechaYHora;
+
+    public Turno(Paciente paciente, Odontologo odontologo, LocalDate fechaYHora) {
+        this.paciente = paciente;
+        this.odontologo = odontologo;
+        this.fechaYHora = fechaYHora;
+    }
 }

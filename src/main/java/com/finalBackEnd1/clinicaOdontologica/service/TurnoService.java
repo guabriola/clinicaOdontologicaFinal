@@ -16,14 +16,19 @@ import java.util.Set;
 public class TurnoService implements ITurnoService{
 
     private final TurnoRepository turnoRepository;
+    private final PacienteService pacienteService;
+    private final OdontologoService odontologoService;
 
     @Autowired
-    public TurnoService(TurnoRepository turnoRepository) {
+    public TurnoService(TurnoRepository turnoRepository, PacienteService pacienteService, OdontologoService odontologoService) {
         this.turnoRepository = turnoRepository;
+        this.pacienteService = pacienteService;
+        this.odontologoService = odontologoService;
     }
 
+
     @Override
-    public TurnoDTO crearTurno(Turno turno) throws Exception{
+    public TurnoDTO crearTurno(Turno turno){
         return turnoATurnoDTO(turnoRepository.save(turno));
     }
 
@@ -69,5 +74,16 @@ public class TurnoService implements ITurnoService{
         turnoDTO.setOdontologoId(turno.getOdontologo().getId());
         turnoDTO.setFechaYHora(turno.getFechaYHora());
         return turnoDTO;
+    }
+
+    public Turno turnoDTOaTurno(TurnoDTO turnoDTO){
+        Turno turno = new Turno();
+        turno.setId(turnoDTO.getId());
+        turno.setPaciente(pacienteService.pacienteDtoAPaciente(
+                pacienteService.buscarPacientePorId(turnoDTO.getId())));
+        turno.setOdontologo(odontologoService.OdontologoDtoAOdontologo(
+                odontologoService.buscarOdontologoPorId(turnoDTO.getId())));
+        turno.setFechaYHora(turnoDTO.getFechaYHora());
+        return turno;
     }
 }

@@ -39,7 +39,7 @@ public class OdontologoController {
     }
 
     @GetMapping
-    public ResponseEntity<Set<OdontologoDTO>> listarPacientes(){
+    public ResponseEntity<Set<OdontologoDTO>> listarOdontologos(){
         return ResponseEntity.ok(odontologoService.listarOdontologos());
     }
 }
